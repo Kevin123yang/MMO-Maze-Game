@@ -1,1 +1,3 @@
 .envlogs/*.log
+logs/
+*.log

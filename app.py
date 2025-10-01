@@ -39,6 +39,10 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 app.config["MONGO_URI"] = os.environ.get("MONGODB_URI", "mongodb://localhost:27017/mmo_game")
 app.config["MONGO_DBNAME"] = "mmo_game"
+# app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY") or "dev"
+# app.config["MONGO_URI"] = os.environ["MONGODB_URI"]
+# app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME", "mmo_game")
+
 app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024  # 2MB
 
 # Configure logging directories
