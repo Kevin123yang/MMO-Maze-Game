@@ -1,7 +1,9 @@
 .envlogs/*.log
-logs/
-*.log
 .env
 **/.env
 *.env
 .env.*
+logs/
+*.log
+*.tar.gz
+
