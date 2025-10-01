@@ -37,12 +37,9 @@ def format_timestamp(dt=None):
 # Initialize Flask app
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-app.config["MONGO_URI"] = os.environ.get("MONGODB_URI", "mongodb://localhost:27017/mmo_game")
-app.config["MONGO_DBNAME"] = "mmo_game"
-# app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY") or "dev"
-# app.config["MONGO_URI"] = os.environ["MONGODB_URI"]
-# app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME", "mmo_game")
-
+# app.config["MONGO_URI"] = os.environ.get("MONGODB_URI", "mongodb://localhost:27017/mmo_game")
+# app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+app.config["MONGO_URI"] = os.environ.get("MONGODB_URI")
 app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024  # 2MB
 
 # Configure logging directories
@@ -271,7 +268,15 @@ def request_entity_too_large(error):
 
 # Initialize MongoDB client
 mongo = PyMongo(app)
+result = mongo.db.users.insert_one({
+    "username": "testuser",
+    "password": "123456",   # 建议用哈希，这里先简化
+})
+print("Inserted test user with _id:", result.inserted_id)
 
+# 再查一次
+print("collections now:", mongo.db.list_collection_names())
+print("one user:", mongo.db.users.find_one())
 # Initialize Flask-Login
 login_manager = LoginManager()
 login_manager.init_app(app)
