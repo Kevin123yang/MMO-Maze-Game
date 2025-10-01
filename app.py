@@ -4,6 +4,7 @@ import logging
 import traceback
 import json
 import pytz
+import certifi
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash, Response, g, jsonify
 from flask_pymongo import PyMongo
@@ -267,7 +268,7 @@ def request_entity_too_large(error):
 
 
 # Initialize MongoDB client
-mongo = PyMongo(app)
+mongo = PyMongo(app, tls=True, tlsCAFile=certifi.where())
 result = mongo.db.users.insert_one({
     "username": "testuser",
     "password": "123456",   # 建议用哈希，这里先简化
