@@ -1,3 +1,5 @@
+import eventlet
+eventlet.monkey_patch()
 import os
 import random
 import logging
@@ -393,8 +395,12 @@ def logout():
 
 # Initialize SocketIO and track online users
 socketio = SocketIO(app,
-                    cors_allowed_origins="*",
-                    ssl_context=None)
+                    cors_allowed_origins=[
+                            "https://mmo-maze-game.onrender.com",
+                            "http://localhost:8080",
+                            "http://127.0.0.1:8080",
+                        ],
+                    async_mode="eventlet")
 online_users = set()
 
 

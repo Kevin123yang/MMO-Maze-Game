@@ -24,4 +24,5 @@ ENV PYTHONUNBUFFERED=1
 
 EXPOSE 8080
 
-CMD ["bash", "-lc", "gunicorn -k eventlet -w 1 -b 0.0.0.0:${PORT:-8080} app:app"]
+CMD ["bash", "-lc", "gunicorn -k eventlet -w 1 -b 0.0.0.0:${PORT:-8080} app:app --forwarded-allow-ips="*"
+"]

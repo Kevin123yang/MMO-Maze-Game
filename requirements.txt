@@ -17,3 +17,4 @@ flask_socketio
 eventlet
 pytz==2023.3
 gunicorn
+eventlet>=0.33.3
