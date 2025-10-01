@@ -18,7 +18,6 @@ import bcrypt
 from bson.objectid import ObjectId
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
-import io
 
 load_dotenv()
 
@@ -38,7 +37,8 @@ def format_timestamp(dt=None):
 # Initialize Flask app
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-app.config["MONGO_URI"] = os.environ.get("MONGODB_URI", "mongodb://mongo:27017/mmo_game")
+app.config["MONGO_URI"] = os.environ.get("MONGODB_URI", "mongodb://localhost:27017/mmo_game")
+app.config["MONGO_DBNAME"] = "mmo_game"
 app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024  # 2MB
 
 # Configure logging directories
