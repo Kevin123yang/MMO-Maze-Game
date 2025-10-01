@@ -269,15 +269,8 @@ def request_entity_too_large(error):
 
 # Initialize MongoDB client
 mongo = PyMongo(app, tls=True, tlsCAFile=certifi.where())
-result = mongo.db.users.insert_one({
-    "username": "testuser",
-    "password": "123456",   # 建议用哈希，这里先简化
-})
-print("Inserted test user with _id:", result.inserted_id)
 
-# 再查一次
-print("collections now:", mongo.db.list_collection_names())
-print("one user:", mongo.db.users.find_one())
+
 # Initialize Flask-Login
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -690,7 +683,7 @@ def trigger_error():
 # Wrap the application in a try/except to catch all unhandled errors
 try:
     if __name__ == '__main__':
-        socketio.run(app, host='0.0.0.0', port=8080, debug=False)
+        socketio.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
 except Exception as e:
     # Log any unhandled errors that might occur during startup
     logger.critical(f"Critical error on application startup: {str(e)}")
