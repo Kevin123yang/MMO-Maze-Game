@@ -6,7 +6,7 @@ A multiplayer online maze game built with Flask and Socket.IO.
 ## Deployment Link
 
 The game is deployed and can be accessed at:
-https://cse312tictactoe.cse312.dev
+https://mmo-maze-game.onrender.com
 
 ## Project Overview
 
