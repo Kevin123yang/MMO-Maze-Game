@@ -43,7 +43,7 @@ To run this application locally:
 
 3. Start the application using Docker Compose
    ```
-   docker compose up
+   docker-compose up --build
    ```
 
 4. Access in your browser
